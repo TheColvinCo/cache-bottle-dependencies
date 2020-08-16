@@ -1,7 +1,7 @@
 {
   "name": "cache-bottle-dependencies",
   "description": "Cache system for bottlejs container",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "source": "src/main.ts",
   "main": "dist/main.js",
   "keywords": [
