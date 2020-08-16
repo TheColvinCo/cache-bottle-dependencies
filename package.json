@@ -1,22 +1,20 @@
 {
-  "name": "@thecolvinco/ts-package-starter",
-  "description": "TypeScript package starter",
+  "name": "cache-bottle-dependencies",
+  "description": "Cache system for bottlejs container",
   "version": "0.0.1",
   "source": "src/main.ts",
-  "main": "dist/main.umd.js",
-  "module": "dist/main.modern.module.js",
-  "unpkg": "dist/main.umd.js",
-  "types": "dist/main.d.ts",
+  "main": "dist/main.js",
   "keywords": [
-    "typescript"
+    "bottlejs",
+    "cache"
   ],
   "files": [
     "dist/**.js*",
     "dist/**/*.ts"
   ],
   "scripts": {
-    "build": "microbundle --define PKG_VERSION=$npm_package_version",
-    "watch": "microbundle watch --define PKG_VERSION=$npm_package_version",
+    "build": "microbundle --define PKG_VERSION=$npm_package_version --format cjs",
+    "watch": "microbundle watch --define PKG_VERSION=$npm_package_version --format cjs",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
@@ -76,18 +74,20 @@
   "license": "MIT",
   "dependencies": {
     "@types/jest": "^26.0.5",
-    "@types/node": "^14.0.24"
+    "@types/node": "^14.0.24",
+    "ms": "^2.1.2",
+    "object-hash": "^2.0.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheColvinCo/ts-package-starter.git"
+    "url": "git+https://github.com/TheColvinCo/cache-bottle-dependencies.git"
   },
   "author": "TheColvinCo",
   "bugs": {
-    "url": "https://github.com/TheColvinCo/ts-package-starter/issues"
+    "url": "https://github.com/TheColvinCo/cache-bottle-dependencies/issues"
   },
-  "homepage": "https://github.com/TheColvinCo/ts-package-starter#readme"
+  "homepage": "https://github.com/TheColvinCo/cache-bottle-dependencies#readme"
 }

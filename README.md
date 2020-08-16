@@ -1,23 +1,49 @@
-# ts-package-starter
+# cache-bottle-dependencies
 
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![Dev Dependencies](https://david-dm.org/TheColvinCo/ts-package-starter/dev-status.svg)](https://david-dm.org/TheColvinCo/ts-package-starter?type=dev)
+Cache any factory method using a unified config with configurable adapters and ttls.
 
-A TypeScript package starter project with microbundle, Jest, prettier
+## Installation
 
-### NPM scripts
+```bash
+npm install cache-bottle-dependencies
+```
 
- - `npm build`: Runs build with [microbundle](https://github.com/developit/microbundle)
- - `npm watch` Runs build in watch mode with [microbundle](https://github.com/developit/microbundle)
- - `npm test`: Run test suite
- - `npm test:watch`: Run test suite in [interactive watch mode](http://facebook.github.io/jest/docs/cli.html#watch)
- - `npm release`, Create a new release.
+## Usage
 
-### About
+```javascript
+import Bottle from "bottlejs";
 
-This package is maintained by [TheColvinCo](https://www.thecolvinco.com)
+import cacheManager from "cache-manager";
+import redisStore from "cache-manager-ioredis";
 
-### LICENSE
+import cacheBottleDependencies from 'cache-bottle-dependencies';
 
-Code is licensed under the [MIT License](./LICENSE).
+const bottle = new Bottle();
 
+const adapters = {
+  redis: cacheManager.caching({
+    store: redisStore,
+    host: REDIS_HOST,
+    ttl: ms(cacheConfig.defaultTtl),
+  }),
+  memory: cacheManager.caching({
+    store: "memory",
+    ttl: ms(cacheConfig.defaultTtl),
+  }),
+};
+
+const config = {
+  defaultTtl: "3h",
+  defaultAdapter: "redis",
+  container: {
+    productsRepository.get: {
+      ttl: "10m",
+      adapter: "memory",
+      version: 2,
+    },
+    productsRepository.list: true,
+  },
+};
+
+cacheBottleDependencies({ bottle, adapters, config });
+```
