@@ -15,8 +15,8 @@
   "scripts": {
     "build": "microbundle --define PKG_VERSION=$npm_package_version --format cjs",
     "watch": "microbundle watch --define PKG_VERSION=$npm_package_version --format cjs",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
     "prerelease": "npm run build",
     "release": "np",
