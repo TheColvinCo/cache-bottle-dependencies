@@ -36,12 +36,12 @@ const config = {
   defaultTtl: "3h",
   defaultAdapter: "redis",
   container: {
-    productsRepository.get: {
+    "productsRepository.get": {
       ttl: "10m",
       adapter: "memory",
       version: 2,
     },
-    productsRepository.list: true,
+    "productsRepository.list": true,
   },
 };
 
